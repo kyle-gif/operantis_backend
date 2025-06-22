@@ -346,7 +346,7 @@ def main():
     if not champion_name_map:
         print("챔피언 이름 정보를 가져오지 못해 프로그램을 종료합니다.")
         return
-    MODEL_PATH = 'best.pt'
+    MODEL_PATH = 'best_8.pt'
     try:
         detector = MinimapDetector(MODEL_PATH, show_preview=True)
     except Exception as e:
