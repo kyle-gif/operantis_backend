@@ -4,10 +4,6 @@ from threading import Lock
 import cv2
 import numpy as np
 
-# ==============================================================================
-# ★★★ Final Verified Zone Definitions (Tower Positions Re-calibrated) ★★★
-# 사용자의 피드백을 반영하여 탑/봇 2,3차 및 미드 1,2,3차 타워 위치를 정밀 재조정한 버전입니다.
-# ==============================================================================
 ZONE_DEFINITIONS = [
     # --- Major Objectives (Neutral) ---
     {"name": "Baron Pit", "coords": (0.355, 0.245), "radius": 0.06},
@@ -77,11 +73,10 @@ class MinimapDetector:
             roi_left = monitor["width"] - roi_width
             roi_top = monitor["height"] - roi_height
             self.minimap_roi = {"top": roi_top, "left": roi_left, "width": roi_width, "height": roi_height}
-        print(f"탐지할 미니맵 영역이 자동으로 설정되었습니다: {self.minimap_roi}")
 
     def start_detection_thread(self, conf_threshold=0.5):
         self.running = True
-        print("미니맵 탐지 스레드를 시작합니다.")
+        print("starting minimap detection thread")
         with mss.mss() as sct:
             while self.running:
                 sct_img = sct.grab(self.minimap_roi)
@@ -115,11 +110,11 @@ class MinimapDetector:
                         text_color = (255, 255, 255)
                         cv2.putText(annotated_frame, zone["name"], (center_x_px - radius_px, center_y_px), font,
                                     font_scale, text_color, font_thickness)
-                    #cv2.imshow('LoL Minimap Detection', annotated_frame)
+                    cv2.imshow('LoL Minimap Detection', annotated_frame)
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         self.running = False
         self.stop()
-        print("미니맵 탐지가 종료되었습니다.")
+        print("minimap detection thread stopped")
 
     def get_detected_objects(self):
         with self.lock:
