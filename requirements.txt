@@ -1,0 +1,8 @@
+requests
+python-dotenv
+opencv-python
+numpy
+mss
+ultralytics
+google-generativeai
+fastapi[all]
