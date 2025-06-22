@@ -6,3 +6,4 @@ mss
 ultralytics
 google-generativeai
 fastapi[all]
+elevenlabs

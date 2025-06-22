@@ -115,7 +115,7 @@ class MinimapDetector:
                         text_color = (255, 255, 255)
                         cv2.putText(annotated_frame, zone["name"], (center_x_px - radius_px, center_y_px), font,
                                     font_scale, text_color, font_thickness)
-                    cv2.imshow('LoL Minimap Detection', annotated_frame)
+                    #cv2.imshow('LoL Minimap Detection', annotated_frame)
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         self.running = False
         self.stop()
